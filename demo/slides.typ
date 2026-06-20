@@ -9,25 +9,26 @@
   author: "Maximilian Rudolph"
 )
 
-#slide(first: true)[
-  #v(1fr)
-
-  #[
-    #set par(spacing: 1em, leading: 0.65em, justify: false)
-
-    #title()
-
-    #text(26pt)[
-      #titlecase("Demonstrating the Slides of this Typst System")
-    ]
-
-    #v(1fr)
-
-    #text(12pt)[
-      Maximilian Rudolph, #datetime.today().display("[day].[month].[year]")
-    ]
-  ]
+#titleSlide(
+  "Demonstrating the Slides of this Typst System",
+  [
+    Maximilian Rudolph, #datetime.today().display("[day].[month].[year]")
+  ],
+)[
+  With this being a boring but functional and pretty title slide.
 ]
+
+#set text(white)
+#titleSlide(
+  "I am also representative of this presentation",
+  [
+    Maximilian Rudolph, #datetime.today().display("[day].[month].[year]")
+  ],
+  fill: rgb(61, 99, 194),
+)[
+  But have a slightly more interesting background. All attributes of a `page` can be used here.
+]
+#set text(black)
 
 #slide(heading: [
   = Elements
@@ -43,6 +44,16 @@
       caption: [An image is also here.]
     )
   ]
+]
+
+#slide(heading: [
+  = Elements
+  == Big Image
+])[
+  #figure(
+    image("alsterpark.jpg"),
+    caption: [I have way more space, because there are no columns.]
+  )
 ]
 
 #slide(heading: [
@@ -75,4 +86,11 @@
   And then some explanations might be needed.
 
   #lorem(20)
+]
+
+#slide(heading: [
+  = Elements
+  == Overflowing Content
+])[
+  #lorem(300)
 ]

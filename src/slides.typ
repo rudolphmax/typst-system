@@ -17,6 +17,8 @@
   #show heading.where(level: 3): set text(18pt)
   #show heading.where(level: 3): set block(above: 1em, below: 1.5em)
 
+  #set image(height: 100%)
+
   #set figure(placement: none)
   #show figure.caption: set text(12pt)
   #show footnote.entry: set text(12pt)
@@ -32,11 +34,11 @@
 
 #let slide(
   heading: none,
-  background: none,
   first: false,
+  ..params,
   content
 ) = context page(
-  background: background,
+  ..params,
   flipped: true,
   footer: context [
     #if first == false [
@@ -53,7 +55,7 @@
   #if heading != none [
     #heading
     #v(15pt)
-  ] else []
+  ]
 
   #let contentSize = measure(content)
 
@@ -71,8 +73,8 @@
   #minheight(content)
 ]
 
-#let titleSlide(subtitle, credits, content: []) = {
-  return slide(first: true)[
+#let titleSlide(subtitle, credits, ..params, content) = {
+  return slide(first: true, ..params)[
     #block(width: 70%)[
 
       #v(1fr)
@@ -85,6 +87,8 @@
         #text(26pt)[
           #titlecase(subtitle)
         ]
+
+        #h(20pt)
 
         #content
 
