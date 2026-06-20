@@ -94,3 +94,10 @@
 ])[
   #lorem(300)
 ]
+
+#slide()[
+  #figure(
+    image("typing-on-computer-zny0u49rxpblwjt6-1161443826.gif"),
+    caption: [Beavis typing angrily (source: https://gifdb.com/gif/beavis-and-butt-head-computer-typing-xc7dmx2s14a8ehez.html)]
+  )
+]
