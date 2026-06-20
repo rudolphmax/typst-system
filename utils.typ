@@ -1,3 +1,5 @@
+#import "@preview/titleize:0.1.1": titlecase
+
 #let slide(
   heading: none,
   background: none,
@@ -37,4 +39,38 @@
   #set align(horizon)
 
   #minheight(content)
+]
+
+#let titleSlide(subtitle, credits, content: []) = {
+  return slide(first: true)[
+    #block(width: 70%)[
+
+      #v(1fr)
+
+      #title()
+
+      #[
+        #set par(spacing: 1em, leading: 0.65em, justify: false)
+
+        #text(26pt)[
+          #titlecase(subtitle)
+        ]
+
+        #content
+
+        #v(1fr)
+
+        #text(12pt)[
+          #credits
+        ]
+      ]
+    ]
+  ]
+}
+
+#let quote(content) = box(inset: (left: 3cm, right: 3cm))[
+  #set align(center)
+  #set text(24pt)
+
+  #emph(content)
 ]

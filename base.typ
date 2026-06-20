@@ -89,16 +89,11 @@
   #show figure.caption: set text(12pt)
   #show footnote.entry: set text(12pt)
 
+  #show bibliography: set text(10pt)
+
   #set columns(gutter: 40pt)
 
   #set list(marker: ([•], $->$))
 
   #doc
-]
-
-#let quote(content) = box(inset: (left: 3cm, right: 3cm))[
-  #set align(center)
-  #set text(24pt)
-
-  #emph(content)
 ]
