@@ -64,7 +64,7 @@
       let size = measure(body, width: available.width, height: auto)
       let args = if size.height <= available.height { (height: 1fr) }
 
-      block(..args, body)
+      block(width: available.width, ..args, body)
     }
   )
 
