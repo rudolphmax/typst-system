@@ -1,5 +1,35 @@
 #import "@preview/titleize:0.1.1": titlecase
 
+#import "./base.typ": *
+
+#let presentation(doc) = [
+  #show: base
+
+  #set text(17pt)
+  #set par(justify: false)
+
+  #set heading(numbering: none)
+
+  #show heading.where(level: 1): set text(26pt, weight: 400)
+  #show heading.where(level: 1): set block(above: 0.8em, below: 0.8em)
+  #show heading.where(level: 2): set text(22pt)
+  #show heading.where(level: 2): set block(above: 0.8em, below: 0.8em)
+  #show heading.where(level: 3): set text(18pt)
+  #show heading.where(level: 3): set block(above: 1em, below: 1.5em)
+
+  #set figure(placement: none)
+  #show figure.caption: set text(12pt)
+  #show footnote.entry: set text(12pt)
+
+  #show bibliography: set text(10pt)
+
+  #set columns(gutter: 40pt)
+
+  #set list(marker: ([•], $->$))
+
+  #doc
+]
+
 #let slide(
   heading: none,
   background: none,

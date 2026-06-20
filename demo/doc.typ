@@ -1,8 +1,8 @@
-#import "/base.typ": base, footer
+#import "/main.typ": *
 
 #import "@preview/titleize:0.1.1": titlecase
 
-#show: base
+#show: doc
 
 #set document(
   title: "Demo Document",

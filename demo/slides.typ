@@ -1,9 +1,7 @@
-#import "/base.typ": base, subtitle, presentation, quote
-#import "/utils.typ": slide
+#import "/main.typ": *
 
 #import "@preview/titleize:0.1.1": titlecase
 
-#show: base
 #show: presentation
 
 #set document(
@@ -20,14 +18,13 @@
     #title()
 
     #text(26pt)[
-      #titlecase("Data Strategy for Overcoming inconsistencies in Ground Truth")
+      #titlecase("Demonstrating the Slides of this Typst System")
     ]
 
     #v(1fr)
 
     #text(12pt)[
-      Maximilian Rudolph, #datetime.today().display("[day].[month].[year]"), Technische Universität Berlin.\
-      Supervised by Prof. Dr. Bettina Berendt.
+      Maximilian Rudolph, #datetime.today().display("[day].[month].[year]")
     ]
   ]
 ]

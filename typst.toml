@@ -1,0 +1,7 @@
+[package]
+name = "rudolphmax-typst-system"
+version = "0.0.0"
+entrypoint = "main.typ"
+authors = ["Maximilian Rudolph <rudolphmax@mailbox.org> @rudolphmax"]
+license = "MIT"
+description = "Personal design system and utilities for documents and slide sets."
