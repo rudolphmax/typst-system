@@ -2,30 +2,21 @@
 
 #import "@preview/titleize:0.1.1": titlecase
 
-#show: presentation
-
-#set document(
+#show: presentation.with(
   title: "Demo Presentation",
+  subtitle: "Demonstrating the Slides of this Typst System",
   author: "Maximilian Rudolph"
 )
 
-#titleSlide(
-  "Demonstrating the Slides of this Typst System",
-  [
-    Maximilian Rudolph, #datetime.today().display("[day].[month].[year]")
-  ],
-)[
+#set document(
+)
+
+#titleSlide()[
   With this being a boring but functional and pretty title slide.
 ]
 
 #set text(white)
-#titleSlide(
-  "I am also representative of this presentation",
-  [
-    Maximilian Rudolph, #datetime.today().display("[day].[month].[year]")
-  ],
-  fill: rgb(61, 99, 194),
-)[
+#titleSlide(fill: rgb(61, 99, 194))[
   But have a slightly more interesting background. All attributes of a `page` can be used here.
 ]
 #set text(black)
@@ -43,6 +34,19 @@
       image("majumdarVisualAestheticAnalysis2016_data.png"),
       caption: [An image is also here.]
     )
+  ]
+]
+
+#slide(heading: [
+  = Elements
+  == Things appearing
+])[
+  #columns(2)[
+    #lorem(20)
+
+    #colbreak()
+
+    #appear([#lorem(20)])
   ]
 ]
 

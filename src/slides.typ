@@ -2,14 +2,13 @@
 
 #import "./base.typ": *
 
-#let presentation(doc) = [
-  #show: base
+#let presentation(..params, doc) = [
+  #show: base.with(..params)
 
   #set text(17pt)
   #set par(justify: false)
 
   #set heading(numbering: none)
-
   #show heading.where(level: 1): set text(26pt, weight: 400)
   #show heading.where(level: 1): set block(above: 0.8em, below: 0.8em)
   #show heading.where(level: 2): set text(22pt)
@@ -32,48 +31,56 @@
   #doc
 ]
 
+#let appear(content) = [
+  #figure(none, kind: "appear", supplement: none)
+  #content
+]
+
 #let slide(
   heading: none,
   first: false,
   ..params,
   content
-) = context page(
-  ..params,
-  flipped: true,
-  footer: context [
-    #if first == false [
-      #set align(right + horizon)
-      #set text(12pt)
+) = context {
+  page(
+    ..params,
+    flipped: true,
+    footer: context [
+      #if first == false [
+        #set align(right + horizon)
+        #set text(12pt)
 
-      #counter(page).display(
-        "1/1",
-        both: true
-      )
-    ] else []
+        #counter(page).display(
+          "1/1",
+          both: true
+        )
+      ] else []
+    ]
+  )[
+    #if heading != none [
+      #heading
+      #v(15pt)
+    ]
+
+    #let contentSize = measure(content)
+
+    #let minheight(body) = layout(
+      available => {
+        let size = measure(body, width: available.width, height: auto)
+        let args = if size.height <= available.height { (height: 1fr) }
+
+        block(width: available.width, ..args, body)
+      }
+    )
+
+    #set align(horizon)
+
+    #minheight(content)
   ]
-)[
-  #if heading != none [
-    #heading
-    #v(15pt)
-  ]
 
-  #let contentSize = measure(content)
+}
 
-  #let minheight(body) = layout(
-    available => {
-      let size = measure(body, width: available.width, height: auto)
-      let args = if size.height <= available.height { (height: 1fr) }
-
-      block(width: available.width, ..args, body)
-    }
-  )
-
-  #set align(horizon)
-
-  #minheight(content)
-]
-
-#let titleSlide(subtitle, credits, ..params, content) = {
+#let titleSlide(..params, content) = context {
   return slide(first: true, ..params)[
     #block(width: 70%)[
 
@@ -85,18 +92,19 @@
         #set par(spacing: 1em, leading: 0.65em, justify: false)
 
         #text(26pt)[
-          #titlecase(subtitle)
+          #titlecase(info.get().subtitle)
         ]
 
         #h(20pt)
 
         #content
 
-        #v(1fr)
+      ]
 
-        #text(12pt)[
-          #credits
-        ]
+      #v(1fr)
+
+      #text(12pt)[
+        #info.get().author, #datetime.today().display("[day].[month].[year]")
       ]
     ]
   ]

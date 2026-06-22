@@ -2,45 +2,13 @@
 
 #import "@preview/titleize:0.1.1": titlecase
 
-#show: doc
-
-#set document(
+#show: doc.with(
   title: "Demo Document",
+  subtitle: "Demonstrating the documents of this Typst System",
   author: "Maximilian Rudolph"
 )
 
-#[
-  #set align(center)
-  #set text(30pt)
-
-  Demo Document
-]
-
-#v(2cm)
-
-#[
-  #set par(spacing: 1em, leading: 0.65em, justify: false)
-
-  #[
-    #set text(21pt)
-    #titlecase("Demonstrating the documents of this Typst system")
-  ]
-
-  #v(0.25cm)
-
-  Maximilian Rudolph, #datetime.today().display("[day].[month].[year]")
-]
-
-#v(1.5cm)
-#outline()
-
-#pagebreak()
-
-#set page(
-  footer: footer(numbered: true, [
-    Maximilian Rudolph
-  ])
-)
+#frontpage()
 
 
 = Introduction
