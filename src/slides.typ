@@ -1,4 +1,5 @@
 #import "@preview/titleize:0.1.1": titlecase
+#import "@preview/ccicons:1.0.1": *
 
 #import "./base.typ": *
 
@@ -16,11 +17,12 @@
   #show heading.where(level: 3): set text(18pt)
   #show heading.where(level: 3): set block(above: 1em, below: 1.5em)
 
-  #set image(height: 100%)
-
   #set figure(placement: none)
+  #show figure: set image(height: 100%)
   #show figure.caption: set text(12pt)
   #show footnote.entry: set text(12pt)
+
+  #show table: set par(leading: 0.6em)
 
   #show bibliography: set text(10pt)
 
@@ -36,20 +38,30 @@
   #content
 ]
 
+#let credits = context [
+  #info.get().author, #datetime.today().display("[day].[month].[year]")
+]
+
+#let getFgColor(color) = if luma(color).components().at(0) > 50% { black } else { white }
+
 #let slide(
   heading: none,
   first: false,
+  fill: white,
   ..params,
   content
 ) = context {
   page(
     ..params,
     flipped: true,
+    fill: fill,
     footer: context [
       #if first == false [
         #set align(right + horizon)
         #set text(12pt)
 
+        #text(9pt)[#credits]
+        #h(1fr)
         #counter(page).display(
           "1/1",
           both: true
@@ -57,6 +69,8 @@
       ] else []
     ]
   )[
+    #set text(getFgColor(fill))
+
     #if heading != none [
       #heading
       #v(15pt)
@@ -80,10 +94,11 @@
 
 }
 
-#let titleSlide(..params, content) = context {
-  return slide(first: true, ..params)[
-    #block(width: 70%)[
+#let titleSlide(fill: white, ..params, license: "cc-by-nc-sa", content) = context {
+  assert(cc-is-valid(license), message: "Invalid license name")
 
+  return slide(first: true, fill: fill, ..params)[
+    #block(width: 70%)[
       #v(1fr)
 
       #title()
@@ -98,14 +113,20 @@
         #h(20pt)
 
         #content
-
       ]
 
       #v(1fr)
 
-      #text(12pt)[
-        #info.get().author, #datetime.today().display("[day].[month].[year]")
-      ]
+
+    ]
+
+    #[
+      #set text(12pt)
+      #credits
+      #h(1fr)
+      #set text(9pt)
+      Licensed under creative commons #h(5pt)
+      #ccicon(license, format: "badge", link: true, scale: 2.1, baseline: 25%)
     ]
   ]
 }

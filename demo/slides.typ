@@ -15,7 +15,6 @@
   With this being a boring but functional and pretty title slide.
 ]
 
-#set text(white)
 #titleSlide(fill: rgb(61, 99, 194))[
   But have a slightly more interesting background. All attributes of a `page` can be used here.
 ]
